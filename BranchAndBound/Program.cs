@@ -11,6 +11,7 @@ namespace BranchAndBound
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Halloo");
             Console.WriteLine("Halloo"); 
             Stopwatch sw = new Stopwatch();
             sw.Start();
