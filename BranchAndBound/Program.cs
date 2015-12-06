@@ -11,6 +11,7 @@ namespace BranchAndBound
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("hELLO");
             Stopwatch sw = new Stopwatch();
             sw.Start();
             Fraction[,] a = { { 7, 4, 2}, 
@@ -18,7 +19,7 @@ namespace BranchAndBound
                 { 1, 4, 5} };
             Fraction[] b = { 9, 15, 6 };
             Fraction[] c = { 2, 15, 2};
-            SimplexTable st = new SimplexTable(a, b, c, new string[] { "<=", "<=", "<=" });
+            SimplexTable st = new SimplexTable(a, b, c, new string[] { "<=", "<=", "<=" }); 
 
             //double[,] a = { { -5, -6, 1, 0, 0 }, { -15, 0, 0, 1, 0 }, { -7, -12, 0, 0, 1} };
             //double[] b = { -1, -1, -1 };
