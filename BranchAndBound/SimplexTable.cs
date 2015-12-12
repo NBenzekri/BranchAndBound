@@ -74,6 +74,19 @@ namespace BranchAndBound
                 C[j] *= -1;
             }
         }
+        public override string ToString()
+        {
+            string str="";
+            for (int i=0; i<nRows; i++)
+            {
+                for (int j=0; j<nColumns; j++)
+                {
+                    str += (A[i][j].ToString()+"\t");
+                }
+                str += Sign[i]+B[i].ToString()+"\n";
+            }
+            return str;
+        }
     }
     class SimplexAlgorithm
     {

@@ -13,12 +13,12 @@ namespace BranchAndBound
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            Fraction[,] a = { { 7, 4, 2}, 
-                { 6, 8, 9},
-                { 1, 4, 5} };
-            Fraction[] b = { 9, 15, 6 };
-            Fraction[] c = { 2, 15, 2};
-            SimplexTable st = new SimplexTable(a, b, c, new string[] { "<=", "<=", "<=" });
+            Fraction[,] a = { { 7, 4, 2, 5}, 
+                { 6, 8, 9, 2},
+                { 1, 4, 5, 7} };
+            Fraction[] b = { 9, 15, 9 };
+            Fraction[] c = { 5, 7 ,4, 2};
+            SimplexTable st = new SimplexTable(a, b, c, new string[] { "<=", "<=", ">=" });
 
             //double[,] a = { { -5, -6, 1, 0, 0 }, { -15, 0, 0, 1, 0 }, { -7, -12, 0, 0, 1} };
             //double[] b = { -1, -1, -1 };

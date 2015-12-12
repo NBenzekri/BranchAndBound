@@ -18,11 +18,13 @@ namespace BranchAndBound
         {
             SimplexTable simplexT = (SimplexTable)simplexTable.Clone();
             CanonicalTransformation.TransformForSimplex(simplexT, startRowForTransform);
+            Console.WriteLine(simplexT.ToString());
             SimplexAlgorithm smpAlg= new SimplexAlgorithm(simplexT, true);
-            smpAlg.GetResultForSimplex();
+            smpAlg.GetResultForSimplex();           
             int nOfDouble = IsDouble(smpAlg.Result);
-            if (nOfDouble==-1)
+            if (nOfDouble == -1)
                 return smpAlg;
+            Console.WriteLine("double result({0})={1}", nOfDouble, smpAlg.Result[nOfDouble]);
             //Branch 1
             Console.WriteLine("start branch 1");
             SimplexTable simplexT1 = (SimplexTable) simplexT.Clone();
@@ -61,7 +63,7 @@ namespace BranchAndBound
             if (sign==">=")           
                 simplexTable.B.Add(intPart+1);
             else
-                simplexTable.B.Add(intPart - 1);
+                simplexTable.B.Add(intPart);
         }
         private int IsDouble(Fraction[] f)
         {
