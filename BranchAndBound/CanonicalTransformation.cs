@@ -8,13 +8,13 @@ namespace BranchAndBound
 {
     class CanonicalTransformation
     {
-        private static Fraction FindM(List<Fraction> arrayC)
+        private static Fraction FindM(SimplexTable st)
         {
-            Fraction max = arrayC[0].Abs();
-            for (int j=0; j<arrayC.Count; j++)
+            Fraction max = st.C[0].Abs();
+            for (int j=0; j<st.nColumns; j++)
             {
-                if (arrayC[j].Abs() > max)
-                    max = arrayC[j].Abs();
+                if ((st.C[j].Abs() > max)&&(st.TypeOfVariable[j]==1))
+                    max = st.C[j].Abs();
             }
             return max * (-10);
         }
@@ -27,7 +27,7 @@ namespace BranchAndBound
         }
         public static void Transform(SimplexTable simplexTable, int startRow=0)
         {
-            Fraction M = FindM(simplexTable.C);
+            Fraction M = FindM(simplexTable);
             for (int i = startRow; i < simplexTable.nRows; i++)
             {
                 simplexTable.nColumns++;

@@ -76,14 +76,19 @@ namespace BranchAndBound
         }
         public override string ToString()
         {
-            string str="";
-            for (int i=0; i<nRows; i++)
+            string str = "Simplex table\n";
+            for (int i = 0; i < nRows; i++)
             {
-                for (int j=0; j<nColumns; j++)
+                for (int j = 0; j < nColumns; j++)
                 {
-                    str += (A[i][j].ToString()+"\t");
+                    str += (A[i][j].ToString() + "\t");
                 }
-                str += Sign[i]+B[i].ToString()+"\n";
+                str += Sign[i] + B[i].ToString() + "\n";
+            }
+            str += "Target function\n";
+            for (int j = 0; j < nColumns; j++)
+            {
+                str += (C[j].ToString() + "\t");
             }
             return str;
         }
