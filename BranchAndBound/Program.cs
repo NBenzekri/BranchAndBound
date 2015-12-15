@@ -11,6 +11,7 @@ namespace BranchAndBound
     {
         static void Main(string[] args)
         {
+	    //new changes
             Stopwatch sw = new Stopwatch();
             sw.Start(); 
             SimplexTable st = MatrixReader.ReadSimplexTable("MatrixA.txt","VectorB.txt","VectorC.txt","Signs.txt");
