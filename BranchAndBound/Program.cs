@@ -28,6 +28,7 @@ namespace BranchAndBound
             Console.Write("Function value {0} ", sa.FunctionValue);
             sw.Stop();
             Console.WriteLine("{0} ms", sw.ElapsedMilliseconds);
+	    Console.WriteLine("Oleg");
             Console.ReadLine();
         }
     }
