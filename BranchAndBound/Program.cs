@@ -11,7 +11,6 @@ namespace BranchAndBound
     {
         static void Main(string[] args)
         {
-	    //Coment
             Stopwatch sw = new Stopwatch();
             sw.Start(); 
             SimplexTable st = MatrixReader.ReadSimplexTable("MatrixA.txt","VectorB.txt","VectorC.txt","Signs.txt");
@@ -29,7 +28,6 @@ namespace BranchAndBound
             Console.Write("Function value {0} ", sa.FunctionValue);
             sw.Stop();
             Console.WriteLine("{0} ms", sw.ElapsedMilliseconds);
-	    Console.WriteLine("Oleg");
             Console.ReadLine();
         }
     }
