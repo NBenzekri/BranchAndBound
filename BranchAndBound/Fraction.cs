@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BranchAndBound
 {
-    struct Fraction : ICloneable, IComparable
+    public struct Fraction : ICloneable, IComparable
     {
         int Numerator { get; set; }
         int Denominator { get; set; }

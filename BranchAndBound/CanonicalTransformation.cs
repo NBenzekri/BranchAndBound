@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BranchAndBound
 {
-    class CanonicalTransformation
+    public class CanonicalTransformation
     {
         private static Fraction FindM(SimplexTable st)
         {

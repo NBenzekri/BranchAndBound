@@ -7,7 +7,7 @@ using System.IO;
 
 namespace BranchAndBound
 {
-    class MatrixReader
+    public class MatrixReader
     {
         public static List<List<Fraction>> ReadMatrix(string fileName, int nRows = 0, int nColumns = 0)
         {

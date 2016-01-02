@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BranchAndBound
 {
-    class BranchAndBoundAlgorithm
+    public class BranchAndBoundAlgorithm
     {
         public SimplexAlgorithm GetResult(SimplexTable simplexTable, bool taskForMax)
         {
@@ -20,7 +20,9 @@ namespace BranchAndBound
             CanonicalTransformation.TransformForSimplex(simplexT, startRowForTransform);
             Console.WriteLine(simplexT.ToString());
             SimplexAlgorithm smpAlg= new SimplexAlgorithm(simplexT, true);
-            smpAlg.GetResultForSimplex();           
+            smpAlg.GetResultForSimplex();
+            if (smpAlg.Result == null)
+                return smpAlg;
             int nOfDouble = IsDouble(smpAlg.Result);
             if (nOfDouble == -1)
                 return smpAlg;
@@ -38,7 +40,10 @@ namespace BranchAndBound
             AddLimitation(simplexT2, nOfDouble, smpAlg.Result[nOfDouble], ">=");
             SimplexAlgorithm smpAlg2;
             smpAlg2 = GetResult(simplexT2, simplexT2.nRows - 1);
-
+            if (smpAlg1.Result == null)
+                return smpAlg2;
+            if (smpAlg2.Result == null)
+                return smpAlg1;
             if (smpAlg1.FunctionValue>smpAlg2.FunctionValue)
                 return smpAlg1;
             else
