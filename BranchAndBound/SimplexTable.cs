@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BranchAndBound
 {
-    class SimplexTable: ICloneable
+    public class SimplexTable: ICloneable
     {
         public List<List<Fraction>> A { get; set; }
         public List<Fraction> B { get; set; } //nRows
@@ -93,7 +93,7 @@ namespace BranchAndBound
             return str;
         }
     }
-    class SimplexAlgorithm
+    public class SimplexAlgorithm
     {
         public SimplexTable simplexTable;       
         public Fraction[] Result { get; set; }
@@ -132,6 +132,9 @@ namespace BranchAndBound
                         simplexTable.A[guideRow][j] = (simplexTable.A[guideRow][j] / temp).Reduce();
                 }
             }
+            temp = d[guideColumn];
+            for (int j = 0; j < simplexTable.nColumns; j++)
+                d[j] = (d[j]-simplexTable.A[guideRow][j]*temp/simplexTable.A[guideRow][guideColumn]).Reduce();
 
         }
         private void CalculateD()
@@ -152,7 +155,7 @@ namespace BranchAndBound
             bool b = false;
             for (int j=0; j<simplexTable.nColumns; j++)
             {
-                if (d[j]<min)
+                if ((d[j]<min)&&(simplexTable.TypeOfVariable[j]!=3))
                 {
                     min = d[j];
                     guideColumn = j;
@@ -233,8 +236,17 @@ namespace BranchAndBound
             for (int i = 0; i < simplexTable.nRows; i++)
             {
                 Result[basis[i]] = simplexTable.B[i];
+                //Console.WriteLine("x[{0}]={1}", basis[i], Result[basis[i]]);
                 if (simplexTable.TypeOfVariable[basis[i]] == 1)
                     FunctionValue += Result[basis[i]] * simplexTable.C[basis[i]];
+                else
+                {
+                    if (simplexTable.TypeOfVariable[basis[i]] == 3)
+                    {
+                        ReturnError();  //???????
+                        break;
+                    }
+                }
             }
             FunctionValue = FunctionValue.Reduce();
         }
@@ -246,15 +258,27 @@ namespace BranchAndBound
             CalculateD();
             while (FindGuideColumnForSimplex())
             {
+                Console.WriteLine(simplexTable.ToString());
+                Console.WriteLine("D:");
+                for (int j=0; j<simplexTable.nColumns; j++)
+                {
+                    Console.Write(d[j]+"\t");
+                }
+                Console.WriteLine();
                 FindGuideRowForSimplex();          
                 RecalculateTable();
                 basis[guideRow] = guideColumn;
-                CalculateD();
+                //CalculateD();
             }
             if (!TaskForMax)
                 simplexTable.ChangTargetFunction();
             GetResult();
         }
+        private void ReturnError()
+        {
+            Result = null;
+            FunctionValue = 0;
+        }   //???????
         /*private bool FindGuideRowForDualSimplex()
         {
             Fraction min = 0;
